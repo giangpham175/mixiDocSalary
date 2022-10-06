@@ -9,6 +9,7 @@
 
 <body>
   <div class="container">
+    <!-- ---------------------------- -->
     <h1 class="mt-5 mb-3">Chức vụ nhân viên:</h1>
     <div class="input-group mb-3">
       <select id="jobRank" class="browser-default custom-select">
@@ -23,32 +24,48 @@
       </select>
     </div>
 
+    <!-- ---------------------------- -->
     <h1 class="mt-5 mb-3">Số giờ làm việc:</h1>
     <div class="row">
-      <div class="col-6">Số giờ làm việc của ca trực <b>chính thức</b>:</div>
+      <div class="col-6">Số giờ làm việc ca trực <b>chính thức</b>:</div>
+      <div class="col-6 input-group mb-3">
+        <input id="mainTime" type="number" class="form-control">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6">Số giờ làm việc ca trực <b>hỗ trợ</b>:</div>
       <div class="col-6 input-group mb-3">
         <input type="number" class="form-control">
       </div>
     </div>
     <div class="row">
-      <div class="col-6">Số giờ làm việc của ca trực <b>hỗ trợ</b>:</div>
+      <div class="col-6">Số giờ làm việc ca trực <b>part-time</b>:</div>
       <div class="col-6 input-group mb-3">
         <input type="number" class="form-control">
       </div>
     </div>
     <div class="row">
-      <div class="col-6">Số giờ làm việc của ca trực <b>part-time</b>:</div>
-      <div class="col-6 input-group mb-3">
+      <div class="col-3">Số giờ <b>trực thay bác sĩ khác</b>:</div>
+      <div class="col-3 input-group mb-3">
         <input type="number" class="form-control">
       </div>
-    </div>
-    <div class="row">
-      <div class="col-6">Số giờ làm việc của ca trực <b>hỗ trợ</b>:</div>
-      <div class="col-6 input-group mb-3">
-        <input type="number" class="form-control">
+
+      <div class="col-3">Chức vụ của bác sĩ được trực thay:</div>
+      <div class="col-3 input-group mb-3">
+        <select id="jobRankReplaced" class="browser-default custom-select">
+          <option value="1" selected>Giám Đốc</option>
+          <option value="2">Phó Giám Đốc</option>
+          <option value="3">Bác Sĩ Trưởng</option>
+          <option value="4">Bác Sĩ</option>
+          <option value="5">Y Tá</option>
+          <option value="6">Thực Tập Sinh</option>
+          <option value="7">Thử Việc</option>
+          <option value="8">Part-time</option>
+        </select>
       </div>
     </div>
 
+    <!-- ---------------------------- -->
     <h1 class="mt-5 mb-3">Chi phí làm việc:</h1>
     <div class="row">
       <div class="col-6">Phí <b>thưởng</b>:</div>
@@ -82,13 +99,14 @@
   </div>
 
   <script>
+    const mainTime = document.querySelector('#mainTime')
     const ipnElement = document.querySelector('input')
     const btnElement = document.querySelector('button')
     const resultElement = document.querySelector('#result')
 
     btnElement.addEventListener('click', calculateSalary)
     function calculateSalary() {
-
+      console
     }
 
 
