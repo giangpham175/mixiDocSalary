@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Tính Lương Bác Sĩ</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+</head>
+
+<body>
+  <div class="container">
+    <h1 class="mt-5 mb-3">Chức vụ nhân viên:</h1>
+    <div class="input-group mb-3">
+      <select id="jobRank" class="browser-default custom-select">
+        <option value="1" selected>Giám Đốc</option>
+        <option value="2">Phó Giám Đốc</option>
+        <option value="3">Bác Sĩ Trưởng</option>
+        <option value="4">Bác Sĩ</option>
+        <option value="5">Y Tá</option>
+        <option value="6">Thực Tập Sinh</option>
+        <option value="7">Thử Việc</option>
+        <option value="8">Part-time</option>
+      </select>
+    </div>
+
+    <h1 class="mt-5 mb-3">Số giờ làm việc:</h1>
+    <div class="row">
+      <div class="col-6">Số giờ làm việc của ca trực <b>chính thức</b>:</div>
+      <div class="col-6 input-group mb-3">
+        <input type="number" class="form-control">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6">Số giờ làm việc của ca trực <b>hỗ trợ</b>:</div>
+      <div class="col-6 input-group mb-3">
+        <input type="number" class="form-control">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6">Số giờ làm việc của ca trực <b>part-time</b>:</div>
+      <div class="col-6 input-group mb-3">
+        <input type="number" class="form-control">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6">Số giờ làm việc của ca trực <b>hỗ trợ</b>:</div>
+      <div class="col-6 input-group mb-3">
+        <input type="number" class="form-control">
+      </div>
+    </div>
+
+    <h1 class="mt-5 mb-3">Chi phí làm việc:</h1>
+    <div class="row">
+      <div class="col-6">Phí <b>thưởng</b>:</div>
+      <div class="col-6 input-group mb-3">
+        <input type="number" class="form-control">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6">Phí <b>sửa xe</b>:</div>
+      <div class="col-6 input-group mb-3">
+        <input type="number" class="form-control">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6">Phí <b>viện phí cảnh sát</b>:</div>
+      <div class="col-6 input-group mb-3">
+        <input type="number" class="form-control">
+      </div>
+    </div>
+    
+    <!-- ---------------------------- -->
+      <button class="btn btn-primary btn-lg btn-block">Tính Lương</button>
+    <p class="text-muted">Still coding... can not test... but result will be showed here</p>
+    <!-- <p class="text-muted">Click chọn Tính lương để Tính lương thực nhận</p> -->
+    <p id="result"></p>
+
+    <div class="alert alert-primary" role="alert">
+      Mô tả sẽ được cập nhật sau khi hoàn tất.
+    </div>
+
+  </div>
+
+  <script>
+    const ipnElement = document.querySelector('input')
+    const btnElement = document.querySelector('button')
+    const resultElement = document.querySelector('#result')
+
+    btnElement.addEventListener('click', calculateSalary)
+    function calculateSalary() {
+
+    }
+
+
+    // btnElement.addEventListener('click', calculateSalary)
+
+    // function timeToDecimal(t) {
+    //   const arr = t.split(':')
+    //   const dec = parseInt((arr[1] / 6) * 10, 10)
+
+    //   return parseFloat(parseInt(arr[0], 10) + '.' + (dec < 10 ? '0' : '') + dec)
+    // }
+
+    // function calculateSalary() {
+    //   const jobRank = document.getElementById("jobRank").value
+    //   if (jobRank == 3) {
+    //     const hoursWorked = timeToDecimal(ipnElement.value)
+    //     if (!hoursWorked) {
+    //       return resultElement.innerHTML = `<b><u>Nhập chính xác giờ làm việc.</u></b>`
+    //     }
+    //     const standardMinHour = 4
+    //     const standardMaxHour = 6
+
+    //     let salaryReceive = 0
+    //     const standardPay = 6000
+    //     const undertimePay = 5000
+    //     const supportPay = 2000
+
+    //     if (hoursWorked < standardMinHour) {
+    //       salaryReceive = hoursWorked * undertimePay
+    //     }
+    //     if (hoursWorked >= standardMinHour && hoursWorked <= standardMaxHour) {
+    //       salaryReceive = hoursWorked * standardPay
+    //     }
+    //     if (hoursWorked > standardMaxHour) {
+    //       const hoursOfSupport = hoursWorked - standardMaxHour
+    //       salaryReceive = (standardMaxHour * standardPay) + (hoursOfSupport * supportPay)
+    //     }
+    //     return resultElement.innerHTML = `Lương sẽ nhận được: <b>${salaryReceive}</b>`
+    //   }
+
+    //   if (jobRank == 1) {
+    //     const hoursWorked = timeToDecimal(ipnElement.value)
+    //     if (!hoursWorked) {
+    //       return resultElement.innerHTML = `<b><u>Nhập chính xác giờ làm việc.</u></b>`
+    //     }
+    //     const standardMinHour = 4
+    //     const standardMaxHour = 6
+
+    //     let salaryReceive = 0
+    //     const standardPay = 8000
+    //     const undertimePay = 7000
+    //     const supportPay = 2000
+
+    //     if (hoursWorked < standardMinHour) {
+    //       salaryReceive = hoursWorked * undertimePay
+    //     }
+    //     if (hoursWorked >= standardMinHour && hoursWorked <= standardMaxHour) {
+    //       salaryReceive = hoursWorked * standardPay
+    //     }
+    //     if (hoursWorked > standardMaxHour) {
+    //       const hoursOfSupport = hoursWorked - standardMaxHour
+    //       salaryReceive = (standardMaxHour * standardPay) + (hoursOfSupport * supportPay)
+    //     }
+    //     return resultElement.innerHTML = `Lương sẽ nhận được: <b>${salaryReceive}</b>`
+    //   }
+
+    //   if (jobRank == 2) {
+    //     return resultElement.innerHTML = `<b><u>Lương của chức vụ này đang được cập nhật.</u></b>`
+    //   }
+    // }
+  </script>
+</body>
+
+</html>
