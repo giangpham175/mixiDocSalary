@@ -35,19 +35,19 @@
     <div class="row">
       <div class="col-6">Số giờ làm việc ca trực <b>hỗ trợ</b>:</div>
       <div class="col-6 input-group mb-3">
-        <input type="number" class="form-control">
+        <input id="supportTime" type="number" class="form-control">
       </div>
     </div>
     <div class="row">
       <div class="col-6">Số giờ làm việc ca trực <b>part-time</b>:</div>
       <div class="col-6 input-group mb-3">
-        <input type="number" class="form-control">
+        <input id="partTime" type="number" class="form-control">
       </div>
     </div>
     <div class="row">
       <div class="col-3">Số giờ <b>trực thay bác sĩ khác</b>:</div>
       <div class="col-3 input-group mb-3">
-        <input type="number" class="form-control">
+        <input id="replacedTime" type="number" class="form-control">
       </div>
 
       <div class="col-3">Chức vụ của bác sĩ được trực thay:</div>
@@ -91,9 +91,9 @@
         <input type="number" class="form-control">
       </div>
     </div>
-    
+
     <!-- ---------------------------- -->
-      <button class="btn btn-primary btn-lg btn-block">Tính Lương</button>
+    <button class="btn btn-primary btn-lg btn-block">Tính Lương</button>
     <p class="text-muted">Still coding... can not test... but result will be showed here</p>
     <!-- <p class="text-muted">Click chọn Tính lương để Tính lương thực nhận</p> -->
     <p id="result"></p>
@@ -105,14 +105,83 @@
   </div>
 
   <script>
+
     const mainTime = document.querySelector('#mainTime')
-    const ipnElement = document.querySelector('input')
+    const supportTime = document.querySelector('#supportTime')
+    const partTime = document.querySelector('#partTime')
+    const replacedTime = document.querySelector('#replacedTime')
+    
+    const jobRank = document.getElementById("jobRank").value
+    const jobRankReplaced = document.getElementById("jobRankReplaced").value
     const btnElement = document.querySelector('button')
     const resultElement = document.querySelector('#result')
 
+    const hospitalFund = 0.9 // meaning 10%
+    const job1Salary = 2250
+    const job2Salary = 2250
+    const job3Salary = 2250
+    const job4Salary = 2000
+    const job5Salary = 1500
+    const job6Salary = 1250
+    const job7Salary = 1000
+    const job8Salary = 0
+
+    let mainSalary = 0
+    if (jobRank == 1) {
+      mainSalary = job1Salary
+    } else if (jobRank == 2) {
+      mainSalary = job2Salary
+    } else if (jobRank == 3) {
+      mainSalary = job3Salary
+    } else if (jobRank == 4) {
+      mainSalary = job4Salary
+    } else if (jobRank == 5) {
+      mainSalary = job5Salary
+    } else if (jobRank == 6) {
+      mainSalary = job6Salary
+    } else if (jobRank == 7) {
+      mainSalary = job7Salary
+    } else if (jobRank == 8) {
+      mainSalary = job8Salary
+    } else {
+      mainSalary = 0
+    }
+
+    let replaceSalaryRecieved = 0
+    if (jobRankReplaced == 1) {
+      replaceSalaryRecieved = job1Salary
+    } else if (jobRankReplaced == 2) {
+      replaceSalaryRecieved = job2Salary
+    } else if (jobRankReplaced == 3) {
+      replaceSalaryRecieved = job3Salary
+    } else if (jobRankReplaced == 4) {
+      replaceSalaryRecieved = job4Salary
+    } else if (jobRankReplaced == 5) {
+      replaceSalaryRecieved = job5Salary
+    } else if (jobRankReplaced == 6) {
+      replaceSalaryRecieved = job6Salary
+    } else if (jobRankReplaced == 7) {
+      replaceSalaryRecieved = job7Salary
+    } else if (jobRankReplaced == 8) {
+      replaceSalaryRecieved = job8Salary
+    } else {
+      replaceSalaryRecieved = 0
+    }
+
+    let temporarySalary = 0
+    let hospitalFundDeposit = 0
+    let supportSalary = 0
+
     btnElement.addEventListener('click', calculateSalary)
     function calculateSalary() {
-      console
+      console.log(jobRank)
+      console.log(mainSalary)
+
+      temporarySalary = mainSalary * mainTime.value
+      supportSalary = mainSalary * supportTime.value / 2
+      hospitalFundDeposit = temporarySalary * hospitalFund
+
+      return resultElement.innerHTML = `${supportSalary}`
     }
 
 
