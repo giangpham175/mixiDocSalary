@@ -70,25 +70,25 @@
     <div class="row">
       <div class="col-6">Phí <b>thưởng</b>:</div>
       <div class="col-6 input-group mb-3">
-        <input type="number" class="form-control">
+        <input id="rewardMoney" type="number" class="form-control">
       </div>
     </div>
     <div class="row">
       <div class="col-6">Phí <b>sửa xe</b>:</div>
       <div class="col-6 input-group mb-3">
-        <input type="number" class="form-control">
+        <input id="repairCarMoney" type="number" class="form-control">
       </div>
     </div>
     <div class="row">
       <div class="col-6">Phí <b>viện phí cảnh sát</b>:</div>
       <div class="col-6 input-group mb-3">
-        <input type="number" class="form-control">
+        <input id="policeBillMoney" type="number" class="form-control">
       </div>
     </div>
     <div class="row">
       <div class="col-6">Phí <b>trợ cấp</b>:</div>
       <div class="col-6 input-group mb-3">
-        <input type="number" class="form-control">
+        <input id="subsidizeMoney" type="number" class="form-control">
       </div>
     </div>
 
@@ -106,82 +106,124 @@
 
   <script>
 
-    const mainTime = document.querySelector('#mainTime')
-    const supportTime = document.querySelector('#supportTime')
-    const partTime = document.querySelector('#partTime')
-    const replacedTime = document.querySelector('#replacedTime')
-    
-    const jobRank = document.getElementById("jobRank").value
-    const jobRankReplaced = document.getElementById("jobRankReplaced").value
     const btnElement = document.querySelector('button')
     const resultElement = document.querySelector('#result')
 
-    const hospitalFund = 0.9 // meaning 10%
-    const job1Salary = 2250
-    const job2Salary = 2250
-    const job3Salary = 2250
-    const job4Salary = 2000
-    const job5Salary = 1500
-    const job6Salary = 1250
-    const job7Salary = 1000
-    const job8Salary = 0
-
-    let mainSalary = 0
-    if (jobRank == 1) {
-      mainSalary = job1Salary
-    } else if (jobRank == 2) {
-      mainSalary = job2Salary
-    } else if (jobRank == 3) {
-      mainSalary = job3Salary
-    } else if (jobRank == 4) {
-      mainSalary = job4Salary
-    } else if (jobRank == 5) {
-      mainSalary = job5Salary
-    } else if (jobRank == 6) {
-      mainSalary = job6Salary
-    } else if (jobRank == 7) {
-      mainSalary = job7Salary
-    } else if (jobRank == 8) {
-      mainSalary = job8Salary
-    } else {
-      mainSalary = 0
-    }
-
-    let replaceSalaryRecieved = 0
-    if (jobRankReplaced == 1) {
-      replaceSalaryRecieved = job1Salary
-    } else if (jobRankReplaced == 2) {
-      replaceSalaryRecieved = job2Salary
-    } else if (jobRankReplaced == 3) {
-      replaceSalaryRecieved = job3Salary
-    } else if (jobRankReplaced == 4) {
-      replaceSalaryRecieved = job4Salary
-    } else if (jobRankReplaced == 5) {
-      replaceSalaryRecieved = job5Salary
-    } else if (jobRankReplaced == 6) {
-      replaceSalaryRecieved = job6Salary
-    } else if (jobRankReplaced == 7) {
-      replaceSalaryRecieved = job7Salary
-    } else if (jobRankReplaced == 8) {
-      replaceSalaryRecieved = job8Salary
-    } else {
-      replaceSalaryRecieved = 0
-    }
-
-    let temporarySalary = 0
-    let hospitalFundDeposit = 0
-    let supportSalary = 0
-
     btnElement.addEventListener('click', calculateSalary)
+
     function calculateSalary() {
-      console.log(jobRank)
-      console.log(mainSalary)
+      const mainTime = document.querySelector('#mainTime')
+      const supportTime = document.querySelector('#supportTime')
+      const partTime = document.querySelector('#partTime')
+      const replacedTime = document.querySelector('#replacedTime')
 
-      temporarySalary = mainSalary * mainTime.value
-      supportSalary = mainSalary * supportTime.value / 2
-      hospitalFundDeposit = temporarySalary * hospitalFund
+      const rewardMoney = document.querySelector('#rewardMoney')
+      const repairCarMoney = document.querySelector('#repairCarMoney')
+      const policeBillMoney = document.querySelector('#policeBillMoney')
+      const subsidizeMoney = document.querySelector('#subsidizeMoney')
 
-      return resultElement.innerHTML = `${supportSalary}`
+      const jobRank = document.getElementById("jobRank").value
+      const jobRankReplaced = document.getElementById("jobRankReplaced").value
+
+      const hospitalFund = 0.9 // meaning 10%
+      const job1Salary = 2250
+      const job2Salary = 2250
+      const job3Salary = 2250
+      const job4Salary = 2000
+      const job5Salary = 1500
+      const job6Salary = 1250
+      const job7Salary = 1000
+      const job8Salary = 0
+
+      let mainSalary = 0
+      if (jobRank == 1) {
+        mainSalary = job1Salary
+      } else if (jobRank == 2) {
+        mainSalary = job2Salary
+      } else if (jobRank == 3) {
+        mainSalary = job3Salary
+      } else if (jobRank == 4) {
+        mainSalary = job4Salary
+      } else if (jobRank == 5) {
+        mainSalary = job5Salary
+      } else if (jobRank == 6) {
+        mainSalary = job6Salary
+      } else if (jobRank == 7) {
+        mainSalary = job7Salary
+      } else if (jobRank == 8) {
+        mainSalary = job8Salary
+      } else {
+        mainSalary = 0
+      }
+
+      let replaceSalaryRecieved = 0
+      if (jobRankReplaced == 1) {
+        replaceSalaryRecieved = job1Salary
+      } else if (jobRankReplaced == 2) {
+        replaceSalaryRecieved = job2Salary
+      } else if (jobRankReplaced == 3) {
+        replaceSalaryRecieved = job3Salary
+      } else if (jobRankReplaced == 4) {
+        replaceSalaryRecieved = job4Salary
+      } else if (jobRankReplaced == 5) {
+        replaceSalaryRecieved = job5Salary
+      } else if (jobRankReplaced == 6) {
+        replaceSalaryRecieved = job6Salary
+      } else if (jobRankReplaced == 7) {
+        replaceSalaryRecieved = job7Salary
+      } else if (jobRankReplaced == 8) {
+        replaceSalaryRecieved = 0
+      } else {
+        replaceSalaryRecieved = 0
+      }
+
+      let temporarySalary = 0
+      let supportSalary = 0
+      let replacedSalary = 0
+      let partTimeSalary = 0
+
+      // luong tam tinh, chua cong tru cac khoan phi khac
+      if (mainTime.value != null || mainTime.value != 0) {
+        temporarySalary = mainSalary * mainTime.value
+      }
+      // luong ho tro
+      if (supportTime.value != null || supportTime.value != 0) {
+        supportSalary = mainSalary * supportTime.value / 2
+      }
+      // luong truc thay bac si khac
+      if (replacedTime.value != null || replacedTime.value != 0) {
+        replacedSalary = replacedTime.value * replaceSalaryRecieved
+      }
+      // luong truc part-time
+      if (partTime.value != null || partTime.value != 0) {
+        partTimeSalary = mainSalary * partTime.value
+      }
+
+      let salaryBefore = 0
+      let salaryAfter = 0
+      // luong tong cua so gio lam viec truoc khi trich quy
+      salaryBefore = temporarySalary + supportSalary + replacedSalary + partTimeSalary
+      // luong tong cua so gio lam viec sau khi trich quy
+      salaryAfter = salaryBefore * hospitalFund
+
+      // cong them phi thuong
+      if (rewardMoney.value) {
+        salaryAfter += Number(rewardMoney.value)
+      }
+      // cong them phi sua xe
+      if (repairCarMoney.value) {
+        salaryAfter -= Number(repairCarMoney.value)
+      }
+      // cong them vien phi canh sat
+      if (policeBillMoney.value) {
+        salaryAfter += Number(policeBillMoney.value)
+      }
+      // cong them phi tro cap
+      if (subsidizeMoney.value) {
+        salaryAfter += Number(subsidizeMoney.value)
+      }
+
+      return resultElement.innerHTML = `${salaryAfter}`
     }
 
 
