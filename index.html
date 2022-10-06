@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Tính Lương Bác Sĩ</title>
+  <title>Tính Lương Bác Sĩ MixiCity</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
 </head>
 
@@ -50,7 +50,7 @@
         <input id="replacedTime" type="number" class="form-control">
       </div>
 
-      <div class="col-3">Chức vụ của bác sĩ được trực thay:</div>
+      <div class="col-3"><b>Chức vụ</b> của bác sĩ được trực thay:</div>
       <div class="col-3 input-group mb-3">
         <select id="jobRankReplaced" class="browser-default custom-select">
           <option value="1" selected>Giám Đốc</option>
@@ -94,13 +94,9 @@
 
     <!-- ---------------------------- -->
     <button class="btn btn-primary btn-lg btn-block">Tính Lương</button>
-    <p class="text-muted">Still coding... can not test... but result will be showed here</p>
-    <!-- <p class="text-muted">Click chọn Tính lương để Tính lương thực nhận</p> -->
+    <p class="text-muted">Click to know that you are beautiful</p>
     <p id="result"></p>
-
-    <div class="alert alert-primary" role="alert">
-      Mô tả sẽ được cập nhật sau khi hoàn tất.
-    </div>
+    <p id="detail"></p>
 
   </div>
 
@@ -108,6 +104,7 @@
 
     const btnElement = document.querySelector('button')
     const resultElement = document.querySelector('#result')
+    const detailElement = document.querySelector('#detail')
 
     btnElement.addEventListener('click', calculateSalary)
 
@@ -157,24 +154,34 @@
       }
 
       let replaceSalaryRecieved = 0
+      let role = ''
       if (jobRankReplaced == 1) {
         replaceSalaryRecieved = job1Salary
+        role = 'Giám Đốc'
       } else if (jobRankReplaced == 2) {
         replaceSalaryRecieved = job2Salary
+        role = 'Phó Giám Đốc'
       } else if (jobRankReplaced == 3) {
         replaceSalaryRecieved = job3Salary
+        role = 'Bác Sĩ Trưởng'
       } else if (jobRankReplaced == 4) {
         replaceSalaryRecieved = job4Salary
+        role = 'Bác Sĩ'
       } else if (jobRankReplaced == 5) {
         replaceSalaryRecieved = job5Salary
+        role = 'Y Tá'
       } else if (jobRankReplaced == 6) {
         replaceSalaryRecieved = job6Salary
+        role = 'Thực Tập Sinh'
       } else if (jobRankReplaced == 7) {
         replaceSalaryRecieved = job7Salary
+        role = 'Thử Việc'
       } else if (jobRankReplaced == 8) {
         replaceSalaryRecieved = 0
+        role = 'Part-time'
       } else {
         replaceSalaryRecieved = 0
+        role = ''
       }
 
       let temporarySalary = 0
@@ -210,7 +217,7 @@
       if (rewardMoney.value) {
         salaryAfter += Number(rewardMoney.value)
       }
-      // cong them phi sua xe
+      // tru phi sua xe
       if (repairCarMoney.value) {
         salaryAfter -= Number(repairCarMoney.value)
       }
@@ -223,77 +230,33 @@
         salaryAfter += Number(subsidizeMoney.value)
       }
 
-      return resultElement.innerHTML = `${salaryAfter}`
+      return resultElement.innerHTML = `
+      <div class="alert alert-danger" role="alert">
+        Lương thực nhận của bác sĩ là: <b>${salaryAfter}</b>
+      </div>
+      <div class="alert alert-primary" role="alert">
+        Lương trực (chưa trừ các khoản phí) là: <b>${salaryAfter}</b>
+        <br>
+        Lương trực hỗ trợ là: <b>${supportSalary}</b>
+        <br>
+        Lương trực thay bác sĩ khác (chức vụ: <b>${role}</b>) là: <b>${replacedSalary}</b>
+        <br>
+        Lương trực part-time là: <b>${partTimeSalary}</b>
+        <br>
+        Lương trực sau khi trích quỹ (10%) là: <b>${salaryAfter}</b>
+        <br>
+        <br>
+        Phí thưởng thêm là: <b>${partTimeSalary}</b>
+        <br>
+        Phí sửa xe là: <b>${partTimeSalary}</b>
+        <br>
+        Phí viện phí cảnh sát là: <b>${partTimeSalary}</b>
+        <br>
+        Phí trợ cấp là: <b>${partTimeSalary}</b>
+      </div>
+      `
     }
 
-
-    // btnElement.addEventListener('click', calculateSalary)
-
-    // function timeToDecimal(t) {
-    //   const arr = t.split(':')
-    //   const dec = parseInt((arr[1] / 6) * 10, 10)
-
-    //   return parseFloat(parseInt(arr[0], 10) + '.' + (dec < 10 ? '0' : '') + dec)
-    // }
-
-    // function calculateSalary() {
-    //   const jobRank = document.getElementById("jobRank").value
-    //   if (jobRank == 3) {
-    //     const hoursWorked = timeToDecimal(ipnElement.value)
-    //     if (!hoursWorked) {
-    //       return resultElement.innerHTML = `<b><u>Nhập chính xác giờ làm việc.</u></b>`
-    //     }
-    //     const standardMinHour = 4
-    //     const standardMaxHour = 6
-
-    //     let salaryReceive = 0
-    //     const standardPay = 6000
-    //     const undertimePay = 5000
-    //     const supportPay = 2000
-
-    //     if (hoursWorked < standardMinHour) {
-    //       salaryReceive = hoursWorked * undertimePay
-    //     }
-    //     if (hoursWorked >= standardMinHour && hoursWorked <= standardMaxHour) {
-    //       salaryReceive = hoursWorked * standardPay
-    //     }
-    //     if (hoursWorked > standardMaxHour) {
-    //       const hoursOfSupport = hoursWorked - standardMaxHour
-    //       salaryReceive = (standardMaxHour * standardPay) + (hoursOfSupport * supportPay)
-    //     }
-    //     return resultElement.innerHTML = `Lương sẽ nhận được: <b>${salaryReceive}</b>`
-    //   }
-
-    //   if (jobRank == 1) {
-    //     const hoursWorked = timeToDecimal(ipnElement.value)
-    //     if (!hoursWorked) {
-    //       return resultElement.innerHTML = `<b><u>Nhập chính xác giờ làm việc.</u></b>`
-    //     }
-    //     const standardMinHour = 4
-    //     const standardMaxHour = 6
-
-    //     let salaryReceive = 0
-    //     const standardPay = 8000
-    //     const undertimePay = 7000
-    //     const supportPay = 2000
-
-    //     if (hoursWorked < standardMinHour) {
-    //       salaryReceive = hoursWorked * undertimePay
-    //     }
-    //     if (hoursWorked >= standardMinHour && hoursWorked <= standardMaxHour) {
-    //       salaryReceive = hoursWorked * standardPay
-    //     }
-    //     if (hoursWorked > standardMaxHour) {
-    //       const hoursOfSupport = hoursWorked - standardMaxHour
-    //       salaryReceive = (standardMaxHour * standardPay) + (hoursOfSupport * supportPay)
-    //     }
-    //     return resultElement.innerHTML = `Lương sẽ nhận được: <b>${salaryReceive}</b>`
-    //   }
-
-    //   if (jobRank == 2) {
-    //     return resultElement.innerHTML = `<b><u>Lương của chức vụ này đang được cập nhật.</u></b>`
-    //   }
-    // }
   </script>
 </body>
 
