@@ -13,10 +13,10 @@
     <h1 class="mt-5 mb-3">Chức vụ nhân viên:</h1>
     <div class="input-group mb-3">
       <select id="jobRank" class="browser-default custom-select">
-        <option value="1" selected>Giám Đốc</option>
+        <option value="1">Giám Đốc</option>
         <option value="2">Phó Giám Đốc</option>
         <option value="3">Bác Sĩ Trưởng</option>
-        <option value="4">Bác Sĩ</option>
+        <option value="4" selected>Bác Sĩ</option>
         <option value="5">Y Tá</option>
         <option value="6">Thực Tập Sinh</option>
         <option value="7">Thử Việc</option>
@@ -53,10 +53,10 @@
       <div class="col-3"><b>Chức vụ</b> của bác sĩ được trực thay:</div>
       <div class="col-3 input-group mb-3">
         <select id="jobRankReplaced" class="browser-default custom-select">
-          <option value="1" selected>Giám Đốc</option>
+          <option value="1">Giám Đốc</option>
           <option value="2">Phó Giám Đốc</option>
           <option value="3">Bác Sĩ Trưởng</option>
-          <option value="4">Bác Sĩ</option>
+          <option value="4" selected>Bác Sĩ</option>
           <option value="5">Y Tá</option>
           <option value="6">Thực Tập Sinh</option>
           <option value="7">Thử Việc</option>
@@ -218,36 +218,32 @@
 
       let salaryBefore = 0
       let salaryAfter = 0
-
-      console.log(temporarySalary)
-      console.log(supportSalary)
-      console.log(replacedSalary)
-      console.log(partTimeSalary)
       // luong tong cua so gio lam viec truoc khi trich quy
       salaryBefore = temporarySalary + supportSalary + replacedSalary + partTimeSalary
       // luong tong cua so gio lam viec sau khi trich quy
       salaryAfter = salaryBefore * hospitalFund
 
+      let finalSalary = salaryAfter
       // cong them phi thuong
       if (rewardMoney.value) {
-        salaryAfter += Number(rewardMoney.value)
+        finalSalary += Number(rewardMoney.value)
       }
       // tru phi sua xe
       if (repairCarMoney.value) {
-        salaryAfter -= Number(repairCarMoney.value)
+        finalSalary -= Number(repairCarMoney.value)
       }
       // cong them vien phi canh sat
       if (policeBillMoney.value) {
-        salaryAfter += Number(policeBillMoney.value)
+        finalSalary += Number(policeBillMoney.value)
       }
       // cong them phi tro cap
       if (subsidizeMoney.value) {
-        salaryAfter += Number(subsidizeMoney.value)
+        finalSalary += Number(subsidizeMoney.value)
       }
 
       return resultElement.innerHTML = `
       <div class="alert alert-danger" role="alert">
-        Lương thực nhận của bác sĩ: <b>${salaryAfter}</b>
+        Lương thực nhận của bác sĩ: <b>${finalSalary}</b>
       </div>
       <div class="alert alert-primary" role="alert">
         <b>Chi tiết bảng lương</b>
