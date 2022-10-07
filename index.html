@@ -133,55 +133,65 @@
       const job8Salary = 0
 
       let mainSalary = 0
+      let role = ''
       if (jobRank == 1) {
         mainSalary = job1Salary
+        role = 'Giám Đốc'
       } else if (jobRank == 2) {
         mainSalary = job2Salary
+        role = 'Phó Giám Đốc'
       } else if (jobRank == 3) {
         mainSalary = job3Salary
+        role = 'Bác Sĩ Trưởng'
       } else if (jobRank == 4) {
         mainSalary = job4Salary
+        role = 'Bác Sĩ'
       } else if (jobRank == 5) {
         mainSalary = job5Salary
+        role = 'Y Tá'
       } else if (jobRank == 6) {
         mainSalary = job6Salary
+        role = 'Thực Tập Sinh'
       } else if (jobRank == 7) {
         mainSalary = job7Salary
+        role = 'Thử Việc'
       } else if (jobRank == 8) {
-        mainSalary = job8Salary
+        mainSalary = 0
+        role = 'Part-time'
       } else {
         mainSalary = 0
+        role = ''
       }
 
       let replaceSalaryRecieved = 0
-      let role = ''
+      let replacedRole = ''
       if (jobRankReplaced == 1) {
         replaceSalaryRecieved = job1Salary
-        role = 'Giám Đốc'
+        replacedRole = 'Giám Đốc'
       } else if (jobRankReplaced == 2) {
         replaceSalaryRecieved = job2Salary
-        role = 'Phó Giám Đốc'
+        replacedRole = 'Phó Giám Đốc'
       } else if (jobRankReplaced == 3) {
         replaceSalaryRecieved = job3Salary
-        role = 'Bác Sĩ Trưởng'
+        replacedRole = 'Bác Sĩ Trưởng'
       } else if (jobRankReplaced == 4) {
         replaceSalaryRecieved = job4Salary
-        role = 'Bác Sĩ'
+        replacedRole = 'Bác Sĩ'
       } else if (jobRankReplaced == 5) {
         replaceSalaryRecieved = job5Salary
-        role = 'Y Tá'
+        replacedRole = 'Y Tá'
       } else if (jobRankReplaced == 6) {
         replaceSalaryRecieved = job6Salary
-        role = 'Thực Tập Sinh'
+        replacedRole = 'Thực Tập Sinh'
       } else if (jobRankReplaced == 7) {
         replaceSalaryRecieved = job7Salary
-        role = 'Thử Việc'
+        replacedRole = 'Thử Việc'
       } else if (jobRankReplaced == 8) {
         replaceSalaryRecieved = 0
-        role = 'Part-time'
+        replacedRole = 'Part-time'
       } else {
         replaceSalaryRecieved = 0
-        role = ''
+        replacedRole = ''
       }
 
       let temporarySalary = 0
@@ -209,6 +219,10 @@
       let salaryBefore = 0
       let salaryAfter = 0
       // luong tong cua so gio lam viec truoc khi trich quy
+      console.log(temporarySalary)
+      console.log(supportSalary)
+      console.log(replacedSalary)
+      console.log(partTimeSalary)
       salaryBefore = temporarySalary + supportSalary + replacedSalary + partTimeSalary
       // luong tong cua so gio lam viec sau khi trich quy
       salaryAfter = salaryBefore * hospitalFund
@@ -232,27 +246,54 @@
 
       return resultElement.innerHTML = `
       <div class="alert alert-danger" role="alert">
-        Lương thực nhận của bác sĩ là: <b>${salaryAfter}</b>
+        Lương thực nhận của bác sĩ: <b>${salaryAfter}</b>
       </div>
       <div class="alert alert-primary" role="alert">
-        Lương trực (chưa trừ các khoản phí) là: <b>${salaryAfter}</b>
-        <br>
-        Lương trực hỗ trợ là: <b>${supportSalary}</b>
-        <br>
-        Lương trực thay bác sĩ khác (chức vụ: <b>${role}</b>) là: <b>${replacedSalary}</b>
-        <br>
-        Lương trực part-time là: <b>${partTimeSalary}</b>
-        <br>
-        Lương trực sau khi trích quỹ (10%) là: <b>${salaryAfter}</b>
+        <b>Chi tiết bảng lương</b>
         <br>
         <br>
-        Phí thưởng thêm là: <b>${partTimeSalary}</b>
+        Chức vụ: <b>${role}</b>
         <br>
-        Phí sửa xe là: <b>${partTimeSalary}</b>
+        Lương trực tạm tính (chưa trừ các khoản phí): <b>${temporarySalary}</b>
         <br>
-        Phí viện phí cảnh sát là: <b>${partTimeSalary}</b>
+        Lương trực hỗ trợ: <b>${supportSalary}</b>
         <br>
-        Phí trợ cấp là: <b>${partTimeSalary}</b>
+        Lương trực thay bác sĩ khác (chức vụ: <b>${replacedRole}</b>): <b>${replacedSalary}</b>
+        <br>
+        Lương trực part-time: <b>${partTimeSalary}</b>
+        <br>
+        Tổng lương trực trước khi trích quỹ: <b>${salaryBefore}</b>
+        <br>
+        Tổng lương trực sau khi trích quỹ (10%): <b>${salaryAfter}</b>
+        <br>
+        <br>
+        Phí thưởng thêm: <b>${partTimeSalary}</b>
+        <br>
+        Phí sửa xe: <b>${partTimeSalary}</b>
+        <br>
+        Phí viện phí cảnh sát: <b>${partTimeSalary}</b>
+        <br>
+        Phí trợ cấp: <b>${partTimeSalary}</b>
+      </div>
+      <div class="alert alert-warning" role="alert">
+        Lương 1 giờ của vị trí <b>Giám Đốc</b>: <b>${job1Salary}</b>
+        <br>
+        Lương 1 giờ của vị trí <b>Phó Giám Đốc</b>: <b>${job2Salary}</b>
+        <br>
+        Lương 1 giờ của vị trí <b>Bác Sĩ Trưởng</b>: <b>${job3Salary}</b>
+        <br>
+        Lương 1 giờ của vị trí <b>Bác Sĩ</b>: <b>${job4Salary}</b>
+        <br>
+        Lương 1 giờ của vị trí <b>Y Tá</b>: <b>${job5Salary}</b>
+        <br>
+        Lương 1 giờ của vị trí <b>Thực Tập Sinh</b>: <b>${job6Salary}</b>
+        <br>
+        Lương 1 giờ của vị trí <b>Thử Việc</b>: <b>${job7Salary}</b>
+        <br>
+        Lương 1 giờ của vị trí <b>Part-time</b>: <b>${job8Salary}</b>
+        <br>
+        <br>
+        Nếu có bất kỳ thay đổi nào, vui lòng liên hệ <a target="_blank" href="https://discordapp.com/users/252435602383962113/" rel="noopener noreferrer" style="color:red"><b>G Null</b></a> để được cập nhật sớm nhất
       </div>
       `
     }
