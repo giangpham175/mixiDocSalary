@@ -218,11 +218,12 @@
 
       let salaryBefore = 0
       let salaryAfter = 0
-      // luong tong cua so gio lam viec truoc khi trich quy
+      
       console.log(temporarySalary)
       console.log(supportSalary)
       console.log(replacedSalary)
       console.log(partTimeSalary)
+      // luong tong cua so gio lam viec truoc khi trich quy
       salaryBefore = temporarySalary + supportSalary + replacedSalary + partTimeSalary
       // luong tong cua so gio lam viec sau khi trich quy
       salaryAfter = salaryBefore * hospitalFund
@@ -276,6 +277,8 @@
         Phí trợ cấp: <b>${partTimeSalary}</b>
       </div>
       <div class="alert alert-warning" role="alert">
+        Trích quỹ bệnh viện: <b>10%</b>
+        <br>
         Lương 1 giờ của vị trí <b>Giám Đốc</b>: <b>${job1Salary}</b>
         <br>
         Lương 1 giờ của vị trí <b>Phó Giám Đốc</b>: <b>${job2Salary}</b>
